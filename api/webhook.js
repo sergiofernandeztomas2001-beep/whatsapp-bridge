@@ -1,6 +1,6 @@
 export default function handler(req, res) {
   if (req.method === 'GET') {
-    const verify_token = 'grupospg_token_2026';
+    const verify_token = 'spg2026';
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
