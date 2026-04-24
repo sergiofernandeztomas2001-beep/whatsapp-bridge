@@ -1,11 +1,10 @@
 export default function handler(req, res) {
   if (req.method === 'GET') {
-    const verify_token = 'spg2026';
-    const mode = req.query['hub.mode'];
+    const verifyToken = 'spg2026';
     const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
 
-    if (mode === 'subscribe' && token === verify_token) {
+    if (token === verifyToken && challenge) {
       return res.status(200).send(challenge);
     }
 
