@@ -1,16 +1,14 @@
 export default function handler(req, res) {
   if (req.method === 'GET') {
-    const mode = req.query['hub.mode'];
-    const token = req.query['hub.verify_token'];
     const challenge = req.query['hub.challenge'];
 
-    const VERIFY_TOKEN = 'spg2026';
+    console.log('VERIFY QUERY:', req.query);
 
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      return res.status(200).send(challenge);
+    if (challenge) {
+      return res.status(200).send(String(challenge));
     }
 
-    return res.status(403).send('Forbidden');
+    return res.status(200).send('OK');
   }
 
   if (req.method === 'POST') {
@@ -18,5 +16,5 @@ export default function handler(req, res) {
     return res.status(200).send('OK');
   }
 
-  return res.status(405).send('Method Not Allowed');
+  return res.status(200).send('OK');
 }
